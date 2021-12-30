@@ -4,7 +4,7 @@
 import requests
 import Config
 
-url = "https: // api.yelp.com/v3/businesses/search"
+url = "https://api.yelp.com/v3/businesses/search"
 headers = {
     "Authorization": "Bearer " + Config.api_key
 }
