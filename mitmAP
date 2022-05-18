@@ -1,0 +1,24 @@
+Création d’un faux wi-fi Kitchnbox afin de récupérer toutes les requêtes web des utilisateurs (honeypot)
+On utilisera MitmAP.
+
+•	Prérequis : avoir deux cartes wi-fi. 
+
+> git clone https://github.com/xdavidhu/mitmAP.git
+
+•	Lancer le script avec Python3 : 
+
+> sudo python3 mitmAP.py
+
+•	Lors du premier lancement, choisir « y » pour le laisser installer toutes les dépendances utiles
+•	Entrer le nom de la carte Wi-Fi qui fera office de point d’accès : Please enter the name of your wireless interface (for the AP) – s’aider de la commande « ip a » pour connaitre le nom de l’interface réseau à utiliser pour le faux AP
+•	A la question « Please enter the name of your internet connected interface » : entrer le nom de l’interface réseau qui dispose de la connexion internet
+•	Use SSLSTRIP 2.0? Y/n: Y 
+
+•	Create new HOSTAPD config file at '/etc/hostapd/hostapd.conf' Y/n: Y
+•	Entrer le nom du nouvel SSID à cette question : Please enter the SSID for the AP:
+•	On utilisera le canal 2, inscrire 2 à cette commande : Please enter the channel for the AP:
+•	Enable WPA2 encryption? y/N: N – On mets non ici afin de maximiser les chances de connexion
+•	Start WIRESHARK on wlan0? Y/n: Y
+
+•	Spoof DNS manually? y/N: Y – Répondre « oui » ici nous permettra de faire des attaques par spoofing DNS, exemple : créer un payload pour la connexion au CRM de Kitchnbox afin de siphonner les bases de données clients.
+•	Un fichier de logs est ensuite crée afin de récupérer tout ce qui transite en clair sur le réseau y compris les mots de passe : mitmap-sslstrip.log
